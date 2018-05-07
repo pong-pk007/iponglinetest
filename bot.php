@@ -1,5 +1,4 @@
 <?php
-echo "kdsjfadsjfjdslkfjdslfjdslkf";
     $accessToken = "WLcLV//DF3I/vPMXRAjwZYt5HyujPw5xo2+eSQ00P6rXp9ziKhIwjDZF7DnXv6pAcn7lOca88kwYZ0nVno1yctX6Ibem62uAEx6b2kd4TxqFfJQ49Bz6pPU87bjRR6NMWlmC4gX+cHgZt8wlAHiqZwdB04t89/1O/w1cDnyilFU=";//copy Channel access token ตอนที่ตั้งค่ามาใส่
     
     $content = file_get_contents('php://input');
