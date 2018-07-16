@@ -31,6 +31,9 @@ $arrayHeader[] = "Authorization: Bearer {$accessToken}";
 $message = $arrayJson['events'][0]['message']['text'];
 
 //รับ id ของผู้ใช้
+
+$id = "";
+
 if(isset($arrayJson['events'][0]['source']['userId'])){
     $id = $arrayJson['events'][0]['source']['userId'];
 }else{
@@ -88,6 +91,7 @@ else if ($message == "ลาก่อน") {
         $arrayPostData['messages'][0]['text'] = $i;
         pushMsg($arrayHeader, $arrayPostData);
     }
+    $id = "";
 }
 
 function pushMsg($arrayHeader, $arrayPostData) {
@@ -102,6 +106,7 @@ function pushMsg($arrayHeader, $arrayPostData) {
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
     curl_close($ch);
+   
 }
 
 function replyMsg($arrayHeader, $arrayPostData) {
