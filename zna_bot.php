@@ -18,7 +18,7 @@
 
 
 
-$accessToken = "Or3FAdhd8meFbWg41YcM75+c+HTE9FceVh0/HUka68uPwc6UuAJNlOt2MguhlZDDry/kk0b8G8KXQUevco0cDwO/wpJEVrGseHrvR/10/fI9oCygwaOIPuO//WF2RN+j89uvpjnnM3hYflB+78UBDAdB04t89/1O/w1cDnyilFU="; //copy Channel access token ตอนที่ตั้งค่ามาใส่
+$accessToken = "9sMyWs6WY71x7pounkCl7VgmwG1G/sB8q7pYVcAasz0aXecpmcYNKyCrMdsp8ZK7UZDiZwcVP71YExuSmCcv18XC1TqYGixMnq9RFTvbBRbz+YKUWWcMf86HWSSv+1sC8N9wgiEQ9Mi/Zsbt6JTycgdB04t89/1O/w1cDnyilFU="; //copy Channel access token ตอนที่ตั้งค่ามาใส่
 
 $content = file_get_contents('php://input');
 $arrayJson = json_decode($content, true);
@@ -84,11 +84,12 @@ else if ($message == "ลาก่อน") {
     $arrayPostData['messages'][1]['packageId'] = "1";
     $arrayPostData['messages'][1]['stickerId'] = "131";
     replyMsg($arrayHeader, $arrayPostData);
-} else if ($message == "นับ 1-10") {
+} 
+else if ($message == "นับ 1-10") {
     for ($i = 1; $i <= 10; $i++) {
         $arrayPostData['to'] = $id;
         $arrayPostData['messages'][0]['type'] = "text";
-        $arrayPostData['messages'][0]['text'] = $i.$id;
+        $arrayPostData['messages'][0]['text'] = $i." ".$id;
         pushMsg($arrayHeader, $arrayPostData);
     }
     $id = "";
