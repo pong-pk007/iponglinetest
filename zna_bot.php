@@ -31,7 +31,12 @@ $arrayHeader[] = "Authorization: Bearer {$accessToken}";
 $message = $arrayJson['events'][0]['message']['text'];
 
 //รับ id ของผู้ใช้
-$id = $arrayJson['events'][0]['source']['userId'];
+if(isset($arrayJson['events'][0]['source']['userId'])){
+    $id = $arrayJson['events'][0]['source']['userId'];
+}else{
+    $id = $arrayJson['events'][0]['source']['groupId'];
+}
+
 
 #ตัวอย่าง Message Type "Text"
 if ($message == "สวัสดี") {
