@@ -88,7 +88,7 @@ else if ($message == "ลาก่อน") {
     for ($i = 1; $i <= 10; $i++) {
         $arrayPostData['to'] = $id;
         $arrayPostData['messages'][0]['type'] = "text";
-        $arrayPostData['messages'][0]['text'] = $i;
+        $arrayPostData['messages'][0]['text'] = $i.$id;
         pushMsg($arrayHeader, $arrayPostData);
     }
     $id = "";
