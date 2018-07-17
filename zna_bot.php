@@ -31,14 +31,16 @@ $arrayHeader[] = "Authorization: Bearer {$accessToken}";
 $message = $arrayJson['events'][0]['message']['text'];
 
 //รับ id ของผู้ใช้
+$userId = "";
+$groupId = "";
 
-$id = "";
+$userId = $arrayJson['events'][0]['source']['userId'];
 
-if(isset($arrayJson['events'][0]['source']['userId'])){
-    $id = $arrayJson['events'][0]['source']['userId'];
-}else{
-    $id = $arrayJson['events'][0]['source']['groupId'];
-}
+//if(isset($arrayJson['events'][0]['source']['userId'])){
+//    $id = $arrayJson['events'][0]['source']['userId'];
+//}else{
+//    $id = $arrayJson['events'][0]['source']['groupId'];
+//}
 
 
 #ตัวอย่าง Message Type "Text"
@@ -85,7 +87,17 @@ else if ($message == "ลาก่อน") {
     $arrayPostData['messages'][1]['stickerId'] = "131";
     replyMsg($arrayHeader, $arrayPostData);
 } 
-else if ($message == "นับ 1-10") {
+else if ($message == "group-id") {
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "text";
+        $arrayPostData['messages'][0]['text'] = "groupId: ". $groupId;
+        replyMsg($arrayHeader, $arrayPostData);
+}else if ($message == "user-id") {
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "text";
+        $arrayPostData['messages'][0]['text'] = "userId: " . $userId;
+        replyMsg($arrayHeader, $arrayPostData);
+}else if ($message == "นับ 1-10") {
     for ($i = 1; $i <= 10; $i++) {
         $arrayPostData['to'] = $id;
         $arrayPostData['messages'][0]['type'] = "text";
