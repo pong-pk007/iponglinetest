@@ -35,6 +35,7 @@ $userId = "";
 $groupId = "";
 
 $userId = $arrayJson['events'][0]['source']['userId'];
+$groupId = $arrayJson['events'][0]['source']['groupId'];
 
 //if(isset($arrayJson['events'][0]['source']['userId'])){
 //    $id = $arrayJson['events'][0]['source']['userId'];
