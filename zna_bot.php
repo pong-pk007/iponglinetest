@@ -33,9 +33,16 @@ $message = $arrayJson['events'][0]['message']['text'];
 //รับ id ของผู้ใช้
 $userId = "";
 $groupId = "";
+$id = "";
 
-$userId = $arrayJson['events'][0]['source']['userId'];
-$groupId = $arrayJson['events'][0]['source']['groupId'];
+if (empty($arrayJson['events'][0]['source']['groupId'])){
+    $id = $arrayJson['events'][0]['source']['userId'];
+}else{
+    $id = $arrayJson['events'][0]['source']['groupId'];
+}
+
+
+
 
 //if(isset($arrayJson['events'][0]['source']['userId'])){
 //    $id = $arrayJson['events'][0]['source']['userId'];
@@ -87,8 +94,7 @@ else if ($message == "ลาก่อน") {
     $arrayPostData['messages'][1]['packageId'] = "1";
     $arrayPostData['messages'][1]['stickerId'] = "131";
     replyMsg($arrayHeader, $arrayPostData);
-} 
-else if ($message == "group-id") {
+} else if ($message == "group-id") {
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
         $arrayPostData['messages'][0]['text'] = "groupId: ". $groupId;
@@ -105,7 +111,6 @@ else if ($message == "group-id") {
         $arrayPostData['messages'][0]['text'] = $i." ".$id;
         pushMsg($arrayHeader, $arrayPostData);
     }
-    $id = "";
 }
 
 function pushMsg($arrayHeader, $arrayPostData) {
